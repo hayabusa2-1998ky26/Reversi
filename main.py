@@ -5,7 +5,7 @@ import random
 import sys
 import math
 root = tkinter.Tk()
-root.title("maze")
+root.title("Reversi")
 canvas = tkinter.Canvas(width=1920, height=1020, bg="black")
 canvas.pack()
 maps = [
@@ -52,7 +52,7 @@ def byouga(maps):
             return 0
     else:
         if yosoku == 1:
-            mb.showinfo("Reversi", "置ける場所がないためスキップされました。")
+            mb.showinfo("Reversi", "It was skipped because there was no place to put the piece.")
             yosoku = 0
         return 0
 def put(maps, x, y):
