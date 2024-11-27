@@ -5,7 +5,7 @@ import sys
 import math
 root = tkinter.Tk()
 root.title("Reversi")
-size = 90
+size = 20
 canvas = tkinter.Canvas(width=size * 8, height=size * 8, bg="black")
 canvas.pack()
 
@@ -161,7 +161,7 @@ can = 0
 
 # main loop
 while True:
-    time.sleep(0.01)
+    time.sleep(0.05)
     maps = put(maps, mouse_x, mouse_y)
     stop = screen(maps)
     if stop:
