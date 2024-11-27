@@ -5,7 +5,7 @@ import sys
 import math
 root = tkinter.Tk()
 root.title("Reversi")
-size = 90
+size = 25
 canvas = tkinter.Canvas(width=size * 8, height=size * 8, bg="black")
 canvas.pack()
 
@@ -89,13 +89,12 @@ def check(maps, x, y, player): # Checking to see if you can place the stone in t
     aite =  3 - player
     angles = []
     return1 = False
-    #         ↑,  ↓, →, ←, ┐, └,  ┘,  ┌
     y_list = [1, -1, 0, 0, 1, -1, 1, -1]
     x_list = [0, 0, 1, -1, 1, -1, -1, 1]
     if maps[y][x] == 0:
         for j in range(8):
             try:
-                if maps[y + y_list[j]][x + x_list[j]] == aite and y != 7:
+                if maps[y + y_list[j]][x + x_list[j]] == aite:
                     for i in range(1, 8):
                         try:
                             if maps[y + i * y_list[j]][x + i * x_list[j]] == player:
@@ -106,11 +105,11 @@ def check(maps, x, y, player): # Checking to see if you can place the stone in t
                                 break
                             if y_list[j] == 1 and y + i == 7:
                                 break
-                            if y_list[j] == -1 and y - i == 0:
+                            if y_list[j] == -1 and y - i <= 0:
                                 break
                             if x_list[j] == 1 and x + i == 7:
                                 break
-                            if x_list[j] == -1 and x - i == 0:
+                            if x_list[j] == -1 and x - i <= 0:
                                 break
                         except:
                             break
@@ -132,11 +131,11 @@ def hanten(maps, x, y, angles): # Rotate the stones.
                 while True:
                     if y_list[j] == 1 and y + i == 7:
                         break
-                    if y_list[j] == -1 and y - i == 0:
+                    if y_list[j] == -1 and y - i <= 0:
                         break
                     if x_list[j] == 1 and x + i == 7:
                         break
-                    if x_list[j] == -1 and x - i == 0:
+                    if x_list[j] == -1 and x - i <= 0:
                         break
                     i += 1
                     if maps[y + i * y_list[j]][x + i * x_list[j]] == player:
