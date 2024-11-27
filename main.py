@@ -5,7 +5,7 @@ import sys
 import math
 root = tkinter.Tk()
 root.title("Reversi")
-size = 20
+size = 97
 canvas = tkinter.Canvas(width=size * 8, height=size * 8, bg="black")
 canvas.pack()
 
@@ -43,7 +43,8 @@ def screen(maps): # Screening
                 if maps[y][x] == 2:
                     filler = "white"
                 if maps[y][x] != 0:
-                    canvas.create_oval(x * size, y * size, x * size + size, y * size + size, fill=filler, tag="block")
+                    stone_size = 0.9
+                    canvas.create_oval(x * size + size * (1 - stone_size) * 0.5, y * size + size * (1 - stone_size) * 0.5, x * size + size * (1 - (1 - stone_size) * 0.5), y * size + size * (1 - (1 - stone_size) * 0.5), fill=filler, tag="block")
                 ch1, ch2 = check(maps, x, y, player)
                 if player == 1:
                     filler = "black"
