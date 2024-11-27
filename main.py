@@ -5,7 +5,7 @@ import sys
 import math
 root = tkinter.Tk()
 root.title("Reversi")
-size = 25
+size = 90
 canvas = tkinter.Canvas(width=size * 8, height=size * 8, bg="black")
 canvas.pack()
 
