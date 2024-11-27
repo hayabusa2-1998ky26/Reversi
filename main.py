@@ -119,10 +119,9 @@ def check(maps, x, y, player): # Checking to see if you can place the stone in t
         return return1, angles
     else:
         return False, False
-def hanten(maps, x, y, angles): # Rotate the stones.
+def hanten(maps, x, y, angles): # Rotate stones.
     global player
     aite =  3 - player
-    #         ↑,  ↓, →, ←, ┐, └,  ┘,  ┌
     y_list = [1, -1, 0, 0, 1, -1, 1, -1]
     x_list = [0, 0, 1, -1, 1, -1, -1, 1]
     for j in range(8):
@@ -161,22 +160,38 @@ mouse_y = 0
 can = 0
 
 # main loop
+fpser = time.time()
+fps_count = 0
 while True:
-    time.sleep(0.05)
+    fps_count += 1
+    time.sleep(0.03)
     maps = put(maps, mouse_x, mouse_y)
     stop = screen(maps)
     if stop:
         break
+    if time.time() - fpser > 1:
+        try:
+            canvas.delete("fps")
+            canvas.create_text(size * 8 - 7, size * 8 - 7, text=fps_count, fill="black", tag="fps")
+            fps_count = 0
+            fpser = time.time()
+            canvas.update()
+        except:
+            print("Ended.")
+            sys.exit()
 
+# Counting stone
 black_count = 0
 white_count = 0
-for y in range(8):# Counting stone
+for y in range(8):
     for x in range(8):
         if maps[y][x] == 1:
             black_count += 1
         elif maps[y][x] == 2:
             white_count += 1
-if black_count > white_count:# Screening winner
+
+# Screening winner
+if black_count > white_count:
     mb.showinfo("Reversi", f"black win!(black:{black_count}, white:{white_count})")
 elif white_count > black_count:
     mb.showinfo("Reversi", f"white win!(black:{black_count}, white:{white_count})")
